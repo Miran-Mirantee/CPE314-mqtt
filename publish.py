@@ -6,9 +6,9 @@ import readData
 import uuid
 import sys
 
-# check if topic is provided
+# check if a topic is provided
 if len(sys.argv) != 2: 
-    print('Please include topic')
+    print('Please include a topic')
     exit()
 
 # topic = "sensor"
@@ -44,6 +44,7 @@ def publish(client):
         msg = f"messages: {msg_count}"
         message = json.dumps(row)
         
+        # publish message as a part
         for i in range(0, len(message), chunk_size):
             chunk = message[i:i+chunk_size]
             result = client.publish(topic, chunk)
@@ -54,7 +55,7 @@ def publish(client):
         else:
             print(f"Failed to send message to topic {topic}")
         msg_count += 1
-        time.sleep(1) #180
+        time.sleep(180)
 
 def run():
     client = connect_mqtt()

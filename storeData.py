@@ -11,9 +11,9 @@ config = {
 cnx = mysql.connector.connect(**config)
 cursor = cnx.cursor()
 
+# push data into database
 def pushData(node, time, humidity, temp, thermal):
     stmt = "INSERT INTO `data` (`Node`, `Time`, `Humidity`, `Temperature`, `ThermalArray`) VALUES (%s, %s, %s, %s, %s)"
     values = (node, time, humidity, temp, thermal)
-
     cursor.execute(stmt, values)
     cnx.commit()

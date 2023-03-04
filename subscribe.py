@@ -12,7 +12,9 @@ client_id = f'user-{random.randint(0, 100)}'
 username = 'admin'
 password = '1234'
 
+# indicating message part
 part = 1
+# store temporary message
 temp = 'message'
 
 def connect_mqtt() -> mqtt_client:
@@ -50,8 +52,10 @@ def subscribe(client: mqtt_client):
                 json.dumps(payload['Temperature']), 
                 json.dumps(payload['ThermalArray'])
             )
+            # reset part indicator after each message
             part = 0
         elif part == 1:
+            # store message from the first part
             temp = message_parts
         part += 1
     client.subscribe([(t, 0) for t in topics])
