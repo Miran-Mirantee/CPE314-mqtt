@@ -25,3 +25,7 @@ Store data in database
 ### convertEpoch.py
 
 Convert time in epoch format to human-readable format
+
+### database.sql
+
+Database setup configuration scripts
